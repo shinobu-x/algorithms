@@ -1,8 +1,8 @@
 #include <vector>
 #include "edge.hpp"
 
-#ifndef EDGE_HPP
-#define EDGE_HPP
+#ifndef UNWEIGHTED_GRAPH_HPP
+#define UNWEIGHTED_GRAPH_HPP
 template <typename T>
 struct UnWeightedGraph : std::vector<std::vector<Edge<T>>> {
   bool is_directed;
