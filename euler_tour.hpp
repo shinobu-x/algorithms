@@ -10,14 +10,14 @@ private:
   std::vector<int> data, in, out;
   std::size_t data_size;
   UnWeightedGraph<T>& graph;
-  void dfs(int current_vertex, int previous_vertex, int& reference_count) {
+  void _dfs(int current_vertex, int previous_vertex, int& reference_count) {
     in[current_vertex] = reference_count;
     data[++reference_count] = current_vertex;
     for (auto following_vertex : graph[current_vertex]) {
       if (following_vertex == previous_vertex) {
         continue;
       }
-      dfs(following_vertex, current_vertex, reference_count);
+      _dfs(following_vertex, current_vertex, reference_count);
       data[++reference_count] = current_vertex;
     }
   }
@@ -27,7 +27,7 @@ public:
     data_size(0) {}
   void build(int start = 0) {
     int reference_count = 0;
-    dfs(start, -1, reference_count);
+    _dfs(start, -1, reference_count);
     data_size = reference_count;
   }
   auto index_of(const int vertex) -> std::pair<int, int> {
