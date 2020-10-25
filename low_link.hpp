@@ -24,7 +24,6 @@ struct LowLink {
         ++counts;
         k = dfs(destination, k, index);
         low[index] = std::min(low[index], low[destination]);
-        // is_articulate != ~parent && low[destination] >= ord[index];
         if (ord[index] < low[destination]) {
           bridge.emplace_back(std::minmax(index, (int)destination));
         } else if (destination != parent) {
@@ -32,7 +31,6 @@ struct LowLink {
         }
       }
     }
-    // is_articulate != parent == -1 && counts > 1;
     if (is_articulate) {
       articulation.push_back(index);
     }
