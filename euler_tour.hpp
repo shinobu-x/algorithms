@@ -30,19 +30,19 @@ public:
     dfs(start, -1, reference_count);
     data_size = reference_count;
   }
-  std::pair<int, int> index_of(const int vertex) {
+  auto index_of(const int vertex) -> std::pair<int, int> {
     return {in[vertex], out[vertex]};
   }
-  int previous_order(const int vertex) {
+  auto previous_order(const int vertex) -> int {
     return in[vertex];
   }
-  int following_order(const int vertex) {
+  auto following_order(const int vertex) -> int {
     return out[vertex] - 1;
   }
   const int& operator[] (const int index) const {
     return data[index];
   }
-  std::size_t size() const noexcept {
+  auto size() const noexcept -> std::size_t {
     return data_size;
   }
 };
