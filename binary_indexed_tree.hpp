@@ -14,19 +14,19 @@ public:
       data[current_index] += value;
     }
   }
-  auto compute_sum(int index) -> T {
-    T sum = 0;
+  auto compute_counts(int index) -> T {
+    T counts = 0;
     for (int current_index = index + 1; current_index > 0;
         current_index -= (current_index & -current_index)) {
-      sum += data[current_index];
+      counts += data[current_index];
     }
-    return sum;
+    return counts;
   }
-  auto get_sum() -> T {
-    return compute_sum(data.size() - 1);
+  auto get_counts() -> T {
+    return compute_counts(data.size() - 1);
   }
   auto query(int left, int right) -> T {
-    return compute_sum(right - 1) - compute_sum(left);
+    return compute_counts(right - 1) - compute_counts(left);
   }
 };
 #endif
