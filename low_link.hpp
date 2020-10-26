@@ -12,34 +12,33 @@ struct LowLink {
   std::vector<int> low;
   std::vector<int> articulation;
   std::vector<std::pair<int, int>> bridge;
-  LowLink(const T& graph) : graph(graph) {}
-  auto dfs(int index, int k, int parent) -> int {
-    used[index] = true;
-    ord[index] = ++k;
-    low[index] = ord[index];
-    bool is_articulate;
-    int counts = 0;
-    for (auto& destination : graph[index]) {
-      if (!used[destination]) {
-        ++counts;
-        k = dfs(destination, k, index);
-        low[index] = std::min(low[index], low[destination]);
-        if (ord[index] < low[destination]) {
-          bridge.emplace_back(std::minmax(index, (int)destination));
-        } else if (destination != parent) {
-          low[index] = std::min(low[index], ord[destination]);
-        }
-      }
-    }
-    if (is_articulate) {
-      articulation.push_back(index);
-    }
-    return k;
-  }
-  virtual void build() {
+  LowLink(const T& graph) : graph(graph) {
     used.assign(graph.size(), 0);
     ord.assign(graph.size(), 0);
     low.assign(graph.size(), 0);
+  }
+  auto dfs(int index, int k, int parent) -> int {
+    used[index] = true;
+    ord[index] = low[index] = ++k;
+    bool is_articulate;
+    int counts = 0;
+    for (auto& vertex : graph[index]) {
+      if (!used[vertex]) {
+        ++counts;
+        k = dfs(vertex, k, index);
+        low[index] = std::min(low[index], low[vertex]);
+        if (~parent && ord[index] <= low[vertex]) is_articulate = true;
+        if (ord[index] < low[vertex])
+          bridge.emplace_back(std::minmax(index, (int)vertex));
+      }
+      else if (vertex != parent)
+        low[index] = std::min(low[index], ord[vertex]);
+    }
+    if (parent == -1 && counts > 1) is_articulate = true;
+    if (is_articulate)  articulation.push_back(index);
+    return k;
+  }
+  virtual void build() {
     int k = 0;
     for (int index = 0; index < graph.size(); ++index) {
       if (!used[index]) {
