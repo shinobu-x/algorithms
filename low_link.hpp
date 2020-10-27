@@ -38,7 +38,7 @@ struct LowLink {
     if (is_articulate)  articulation.push_back(index);
     return k;
   }
-  virtual void build() {
+  virtual void run() {
     int k = 0;
     for (int index = 0; index < graph.size(); ++index) {
       if (!used[index]) {
