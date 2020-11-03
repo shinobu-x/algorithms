@@ -3,48 +3,38 @@
 
 #ifndef HOPCROFT_KARP_HPP
 #define HOPCROFT_KARP_HPP
-template <typename T = int>
+template <typename T>
 struct HopcroftKarp {
   std::vector<std::vector<T>> graph;
-  std::vector<T> to, matched;
-  std::vector<bool> is_visited, used;
-  HopcroftKarp(T vertices_x, T vertices_y) : graph(vertices_x),
-  matched(vertices_y, -1), used(vertices_x) {
-    to.assign(graph.size(), -1), is_visited.assign(graph.size(), false); }
-  void add_edge(T u, T v) {
-    graph[u].push_back(v);
+  std::vector<T> dist, matched;
+  std::vector<bool> used, visited;
+  HopcroftKarp(T n, T m) : graph(n), matched(m, -1), used(n) {}
+  void add_edge(T u, T v) { graph[u].push_back(v); }
+  auto dfs(int index) -> bool {
+    visited[index] = true;
+    for (auto& i : graph[index]) {
+      int j = matched[i];
+      if ( j < 0 || (!visited[j] && dist[j] == dist[index] + 1 && dfs(j)))
+        matched[i] = index, used[index] = true; return true;
+    } return false;
   }
   void bfs() {
-    std::queue<T> queue;
+    dist.assign(graph.size(), -1); std::queue<int> queue;
     for (int i = 0; i < graph.size(); ++i)
-      if (!used[i])
-        queue.emplace(i), to[i] = 0;
+      if (!used[i]) { queue.emplace(i); dist[i] = 0; }
     while (!queue.empty()) {
-      int index = queue.front(); queue.pop();
-      for (auto& i : graph[index]) {
-        int v = matched[i];
-        if (v >= 0 && to[v] == -1)
-            to[i] = to[index] + 1, queue.emplace(v);
+      int i = queue.front(); queue.pop();
+      for (auto& j : graph[i]) {
+        int k = matched[j];
+        if (k >= 0 && dist[k] == -1)
+          dist[k] = dist[i] + 1; queue.emplace(k);
       }
     }
   }
-
-  bool dfs(int index) {
-    is_visited[index] = true;
-    for (auto& destination : graph[index]) {
-      int is_matched = matched[destination];
-      if (is_matched < 0 || (!is_visited[is_matched] &&
-            to[destination] == to[index] + 1 && dfs(is_matched)))
-        matched[destination] = index, used[index] = true; return true;
-    }
-    return false;
-  }
-
   auto run() -> int {
     int r = 0;
     while (true) {
-      bfs();
-      int flow = 0;
+      bfs(); visited.assign(graph.size(), false); int flow = 0;
       for (int i = 0; i < graph.size(); ++i)
         if (!used[i] && dfs(i)) ++flow;
       if (flow == 0) return r;
