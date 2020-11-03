@@ -12,7 +12,7 @@ struct BipartiteMatching {
   void add_edge(int u, int v) {
     graph[u].push_back(v), graph[v].push_back(u);
   }
-  bool dfs(int index) {
+  auto dfs(int index) -> bool {
     used[index] = t;
     for (auto& destination : graph[index]) {
       int is_matched = matched[destination];
@@ -30,6 +30,7 @@ struct BipartiteMatching {
       if (is_visited[i] == 0) continue;
       if (matched[i] == -1) ++t, r += dfs(i);
     }
+    return r;
   }
 };
 #endif
