@@ -9,20 +9,16 @@ struct BipartiteMatching {
   T t;
   BipartiteMatching(T vertices) : graph(vertices), is_visited(vertices, 1),
     used(vertices, 0), matched(vertices, -1), t(0) {}
-  void add_edge(int u, int v) {
-    graph[u].push_back(v), graph[v].push_back(u);
-  }
+  void add_edge(int u, int v) { graph[u].push_back(v), graph[v].push_back(u); }
   auto dfs(int index) -> bool {
     used[index] = t;
     for (auto& destination : graph[index]) {
       int is_matched = matched[destination];
       if (is_visited[destination] == 0) continue;
       if (is_matched == -1 || (used[is_matched] != t && dfs(is_matched))) {
-        matched[index] = destination, matched[destination] = index;
-        return true;
-      }
+        matched[index] = destination, matched[destination] = index; return true;
+      } return false;
     }
-    return false;
   }
   auto run(int index = 1) -> T {
     T r = 0;
