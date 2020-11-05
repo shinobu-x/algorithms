@@ -5,7 +5,7 @@
 #define UNION_FIND_HPP
 struct UnionFind {
   std::vector<int> vertex;
-  UnionFind(std::size_t size) : vertex(size, -1) {}
+  UnionFind(std::size_t vertices) : vertex(vertices, -1) {}
   auto root(int index) -> int {
     return (vertex[index] < 0 ? index : vertex[index] = root(vertex[index]));
   }
