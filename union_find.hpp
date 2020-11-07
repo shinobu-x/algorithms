@@ -9,7 +9,7 @@ struct UnionFind {
   auto root(int index) -> int {
     return (vertex[index] < 0 ? index : vertex[index] = root(vertex[index]));
   }
-  auto same(int x, int y) -> bool {
+  auto find(int x, int y) -> bool {
     return root(x) == root(y);
   }
   void unite(int x, int y) {
@@ -20,7 +20,7 @@ struct UnionFind {
     }
   }
   auto size(int x) -> int {
-    return -vertex[x];
+    return -vertex[root(x)];
   }
 };
 #endif
