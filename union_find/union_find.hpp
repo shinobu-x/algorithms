@@ -18,8 +18,7 @@ struct UnionFind {
     } else return true;
   }
   auto find(int x) -> int {
-    if (vertex[x] < 0) return x;
-    return vertex[x] = find(vertex[x]);
+    return (vertex[x] < 0) ? x : vertex[x] = find(vertex[x]);
   }
   auto size(int x) -> int {
     return -vertex[find(x)];
