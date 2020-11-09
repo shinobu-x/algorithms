@@ -9,18 +9,23 @@ struct UnionFind {
   auto root(int index) -> int {
     return (vertex[index] < 0 ? index : vertex[index] = root(vertex[index]));
   }
-  auto find(int x, int y) -> bool {
-    return root(x) == root(y);
-  }
-  void unite(int x, int y) {
-    x = root(x), y = root(y);
+  auto unite(int x, int y) -> bool {
+    x = find(x), y = find(y);
     if (x != y) {
       if (vertex[x] > vertex[y]) std::swap(x, y);
       vertex[x] += vertex[y]; vertex[y] = x;
-    }
+      return false;
+    } else return true;
+  }
+  auto find(int x) -> int {
+    if (vertex[x] < 0) return x;
+    return vertex[x] = find(vertex[x]);
   }
   auto size(int x) -> int {
-    return -vertex[root(x)];
+    return -vertex[find(x)];
+  }
+  auto same(int x, int y) -> bool {
+    return find(x) == find(y);
   }
 };
 #endif
