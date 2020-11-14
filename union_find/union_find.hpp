@@ -13,10 +13,8 @@ struct UnionFind {
       if (data[x] > data[y]) std::swap(x, y);
       data[x] += data[y]; data[y] = x;
       return false;
-    } else return true;
+    } return true;
   }
-  auto same(int x, int y) -> bool {
-    return find(x) == find(y);
-  }
+  auto same(int x, int y) -> bool {return find(x) == find(y);}
 };
 #endif
