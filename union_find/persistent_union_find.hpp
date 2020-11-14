@@ -1,5 +1,5 @@
 #include <vector>
-#include "../persistent_array.hpp"
+#include "persistent_array.hpp"
 
 #ifndef PERSISTENT_UNION_FIND_HPP
 #define PERSISTENT_UNION_FIND_HPP
