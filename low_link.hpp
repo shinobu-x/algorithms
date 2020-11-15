@@ -9,18 +9,20 @@
 #define LOW_LINK_HPP
 template <typename T>
 struct LowLink : Graph<T> {
-  UnionFind union_find; Graph<T> graph; std::vector<T> visited, ord, low;
+  UnionFind union_find; Graph<T> graph;
+  std::vector<Edge<T>> bridge; std::vector<T> visited, ord, low;
   LowLink(int size) : union_find(size), graph(size), ord(size), low(size) {}
   void dfs(int index, int i, int parent = -1) {
     visited[index] = true; ord[index] = low[index] = ++i;
-    for (auto& v : graph.graph[index]) {
-      if (!visited[v]) {
-        dfs(v, i, index); low[index] = std::min(low[index], low[v]);
-        if (ord[index] >= low[v]) union_find.unite(index, v);
-      } else if (v != parent) low[index] = std::min(low[index], ord[v]);
+    for (auto& to : graph.graph[index]) {
+      if (!visited[to]) {
+        dfs(to, i, index); low[index] = std::min(low[index], low[to]);
+        if (ord[index] >= low[to]) union_find.unite(index, to);
+        else bridge.emplace_back(to);
+      } else low[index] = std::min(low[index], ord[to]);
     }
   }
-  void run() {
+  virtual void init() {
     int i = 0;
     for (int j = 0; j < graph.size(); ++j) if (!visited[j]) dfs(j, i, -1);
   }
