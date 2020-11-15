@@ -20,23 +20,23 @@ struct PersistentArray {
   T get(const int& c) {
     return get(root, c);
   }
-  std::pair<Node*, T*> mutable_get(Node* t, int c) {
+  std::pair<Node*, T*> get_mutable(Node* t, int c) {
     t = t ? new Node(*t) : new Node();
     if (c == 0) return {t, &t->data};
     auto p = mutable_get(t->child[c & ((1 << Log) - 1)], c >> Log);
     t->child[c & ((1 << Log) - 1)] = p.first;
     return {t, p.second};
   }
-  T* mutable_get(const int& c) {
+  T* get_mutable(const int& c) {
     auto r = mutable_get(root, c); root = r.first; return r.second;
   }
-  Node* build(Node* t, const T& data, int c) {
+  Node* init(Node* t, const T& data, int c) {
     if (!t) t = new Node();
     if (c == 0) { t->data = data; return t; }
     auto p = build(t->child[c & ((1 << Log) - 1)], data, c >> Log);
     t->child[c & ((1 << Log) - 1)] = p; return t;
   }
-  void build(const std::vector<T>& v) {
+  void init(const std::vector<T>& v) {
     root = nullptr;
     for (int i = 0; i < v.size(); ++i)
       root = build(root, v[i], i);

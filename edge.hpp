@@ -5,18 +5,9 @@
 #define EDGE_HPP
 template <typename T>
 struct Edge {
-  std::pair<int, int> direction;
-  int cost;
-  Edge(int source, int destination, int cost) :
-    direction(source, destination), cost(cost) {}
-  Edge(int destination, int cost) :
-    direction(-1, destination), cost(cost) {}
-  Edge &operator=(const int &vertex) {
-    direction.second = vertex;
-    return *this;
-  }
-  operator int () const {
-    return direction.second;
-  }
+  int from, to; T cost; int index;
+  Edge(int from, int to, T cost = 1, int index = -1) : from(from), to(to),
+    cost(cost), index(index) {}
+  operator int() const {return to;}
 };
 #endif
