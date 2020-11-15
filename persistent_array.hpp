@@ -1,6 +1,5 @@
 #include <utility>
 #include <vector>
-
 #ifndef PERSISTENT_ARRAY_HPP
 #define PERSISTENT_ARRAY_HPP
 template <typename T, int Log>

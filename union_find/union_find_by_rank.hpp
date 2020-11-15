@@ -1,5 +1,4 @@
 #include <vector>
-
 #ifndef UNION_FIND_BY_RANK_HPP
 #define UNION_FIND_BY_RANK_HPP
 struct UnionFindByRank {

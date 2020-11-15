@@ -1,7 +1,6 @@
 #include <vector>
 #include "euler_tour.hpp"
 #include "binary_indexed_tree.hpp"
-
 #ifndef COUNT_ON_EULER_TOUR_HPP
 #define COUNT_ON_EULER_TOUR_HPP
 template <typename T, typename U>

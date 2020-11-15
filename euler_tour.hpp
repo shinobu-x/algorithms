@@ -1,7 +1,6 @@
 #include <utility>
 #include <vector>
 #include "unweighted_graph.hpp"
-
 #ifndef EULER_TOUR_HPP
 #define EULER_TOUR_HPP
 template <typename T>

@@ -1,5 +1,4 @@
 #include <vector>
-
 #ifndef BINARY_INDEXED_TREE_HPP
 #define BINARY_INDEXED_TREE_HPP
 template <typename T>

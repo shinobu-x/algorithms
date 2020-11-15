@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <limits>
 #include <vector>
-
 #ifndef HUNGARIAN_HPP
 #define HUNGARIAN_HPP
 typedef int weight;

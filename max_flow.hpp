@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <queue>
 #include <vector>
-
 #ifndef MAX_FLOW_HPP
 #define MAX_FLOW_HPP
 struct MaxFlow {

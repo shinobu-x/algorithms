@@ -2,7 +2,6 @@
 #include <iterator>
 #include <utility>
 #include <vector>
-
 #ifndef PARTIALLY_PERSISTENT_UNION_FIND_HPP
 #define PARTIALLY_PERSISTENT_UNION_FIND_HPP
 struct PartiallyPersistentUnionFind {

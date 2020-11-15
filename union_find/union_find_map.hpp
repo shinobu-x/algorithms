@@ -2,7 +2,6 @@
 #include <utility>
 #include <vector>
 #include "union_find.hpp"
-
 #ifndef UNION_FIND_MAP_HPP
 #define UNION_FIND_MAP_HPP
 template <typename T>

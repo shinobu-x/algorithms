@@ -1,6 +1,5 @@
 #include <vector>
 #include "union_find.hpp"
-
 #ifndef BIPARTITE_GRAPH_HPP
 #define BIPARTITE_GRAPH_HPP
 struct BipartiteGraph : UnionFind {

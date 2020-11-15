@@ -1,6 +1,5 @@
 #include <vector>
 #include "low_link.hpp"
-
 #ifndef TWO_EDGE_CONNECTED_COMPONENT
 #define TWO_EDGE_CONNECTED_COMPONENT
 template <typename T>

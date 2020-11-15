@@ -1,6 +1,5 @@
 #include <utility>
 #include <vector>
-
 #ifndef UNION_FIND_BY_SIZE_HPP
 #define UNION_FIND_BY_SIZE_HPP
 struct UnionFindBySize {

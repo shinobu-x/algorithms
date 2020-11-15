@@ -1,7 +1,6 @@
 #include <stack>
 #include <utility>
 #include <vector>
-
 #ifndef UNION_FIND_UNDO_HPP
 #define UNION_FIND_UNDO_HPP
 struct UnionFindUndo {

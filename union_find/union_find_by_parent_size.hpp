@@ -1,6 +1,5 @@
 #include <utility>
 #include <vector>
-
 #ifndef UNION_FIND_BY_PARENT_SIZE
 #define UNION_FIND_BY_PARENT_SIZE
 struct UnionFindByParentSize {

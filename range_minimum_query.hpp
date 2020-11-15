@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <vector>
-
 #ifndef RANGE_MINIMUM_QUERY_HPP
 #define RANGE_MINIMUM_QUERY_HPP
 typedef long long int ll;

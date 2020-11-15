@@ -1,10 +1,8 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
-
 #include "graph.hpp"
 #include "union_find.hpp"
-
 #ifndef LOW_LINK_HPP
 #define LOW_LINK_HPP
 template <typename T>

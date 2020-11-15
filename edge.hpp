@@ -1,6 +1,5 @@
 #include <utility>
 #include <vector>
-
 #ifndef EDGE_HPP
 #define EDGE_HPP
 template <typename T>
