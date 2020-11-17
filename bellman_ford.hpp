@@ -4,19 +4,22 @@
 #ifndef BELLMAN_FORD_HPP
 #define BELLMAN_FORD_HPP
 template <typename T>
-void BellmanFord() {
-  int vertices = 1000;
-  std::vector<Edge<T>> edges;
-  std::vector<int> d;
-  std::size_t capacity = edges.size();
-  d.assign(capacity, 1000000);
-  int s = 1;
-  d[s] = 0;
-  for (int i = 0; i < vertices; ++i)
-    for (int j = 0; j < capacity; ++j) {
-      Edge e = edges[j];
-      if (d[e.destination] > d[e.source] + e.cost && i != vertices - 1)
-        d[e.destination] = d[e.source] + e.cost;
-    }
-}
+struct BellmanFord {
+  const int inf = std::numeric_limits<T>::max();
+  std::vector<Edge<T>> edges; std::vector<T> to; int v; int size;
+  BellmanFord(const std::vector<Edge<T>>& edges, int v, int size) :
+    edges(edges), to(v, inf), v(v), size(size) {}
+  auto operator()() -> std::vector<T> {
+    to[size] = 0;
+    for (int i = 0; i < v - 1; ++i)
+      for (auto& e : edges) {
+        if (to[e.from] == inf) continue;
+        to[e.to] = std::min(to[e.to], to[e.from] + e.cost);
+      }
+    for (auto& e : edges) {
+      if (to[e.from] == inf) continue;
+      if (to[e.from] + e.cost < to[e.to]) return std::vector<T>();
+    } return to;
+  }
+};
 #endif
