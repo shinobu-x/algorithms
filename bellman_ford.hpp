@@ -1,6 +1,5 @@
 #include <vector>
 #include "edge.hpp"
-
 #ifndef BELLMAN_FORD_HPP
 #define BELLMAN_FORD_HPP
 template <typename T>
