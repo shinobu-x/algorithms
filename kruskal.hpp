@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iterator>
 #include <vector>
 #include "edge.hpp"
@@ -12,7 +11,7 @@ struct Kruskal {
   int v;
   Kruskal(std::vector<Edge<T>>& edges, int v) : edges(edges), v(v) {}
   auto operator()() -> MinimumSpanningTree<T> {
-    std::sort(std::begin(edges), std::end(edges),
+    sort(std::begin(edges), std::end(edges),
         [](const Edge<T>& a, const Edge<T>& b) {return a.cost < b.cost;});
     UnionFind tree(v); T total = T(); std::vector<Edge<T>> es;
     for (auto& e : edges)
