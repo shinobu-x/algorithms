@@ -1,7 +1,6 @@
 #include <functional>
 #include <string>
 #include <vector>
-// template <int size, int margin>
 #ifndef TRIE_HPP
 #define TRIE_HPP
 template <int size1, int margin>
