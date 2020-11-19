@@ -2,7 +2,7 @@
 #include <vector>
 #ifndef EDGE_HPP
 #define EDGE_HPP
-template <typename T>
+template <typename T = int>
 struct Edge {
   int from, to; T cost; int index;
   Edge(int from, int to, T cost = 1, int index = -1) : from(from), to(to),

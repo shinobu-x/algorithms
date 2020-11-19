@@ -1,5 +1,4 @@
 #include <vector>
-
 #ifndef BIPARTITE_MATCHING_HPP
 #define BIPARTITE_MATCHING_HPP
 template <typename T = int>
