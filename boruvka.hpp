@@ -1,3 +1,4 @@
+// https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 #include <algorithm>
 #include <utility>
 #include <vector>
