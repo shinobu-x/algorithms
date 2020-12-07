@@ -43,7 +43,7 @@ struct MillerRabinPrimalityTest {
       return !e ? x : mul_inv(n, e - 1, x * (2 - x * n));
     }
   };
-  using iunt128_t = __uint128_t;
+  using uint128_t = __uint128_t;
   using mod64 = MathMod<uint64_t, uint128_t, int64_t>;
   using mod32 = MathMod<uint32_t, uint64_t, int32_t>;
   template<> uint64_t mod64::mod = 0;
